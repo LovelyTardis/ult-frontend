@@ -1,0 +1,25 @@
+---
+import type { UltType, UserType } from "../../types.astro";
+import UltCard from "./UltCard.astro";
+
+export interface Props {
+  data: UserType;
+}
+
+const { data } = Astro.props;
+const { ults } = data;
+---
+
+<div class="ult-container">
+  {
+    ults.map((ult: UltType) => {
+      return <UltCard ult={ult} />;
+    })
+  }
+</div>
+
+<style>
+  .ult-container {
+    margin: auto;
+  }
+</style>
