@@ -1,0 +1,24 @@
+---
+import CardHeader from "../../components/ult/card/CardHeader.astro";
+import UltContainer from "../../components/ult/UltContainer.astro";
+import Layout from "../../layouts/Layout.astro";
+
+const { username: usernameParam } = Astro.params;
+const userData = await fetch(`${import.meta.env.DEV_API}/user/${usernameParam}`);
+const { data, error, code } = await userData.json();
+---
+
+<Layout title={`${usernameParam} - profile`}>
+  <>
+  {
+    !error ? (
+      <CardHeader user={data} />
+      <h3>Recent ults</h3>
+      <UltContainer data={data} />
+      ) : (
+        <h1>User {usernameParam} not found</h1>
+        <h3>Error code: {code}</h3>
+    )
+  }
+  </>
+</Layout>
