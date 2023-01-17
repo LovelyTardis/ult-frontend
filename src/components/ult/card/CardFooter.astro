@@ -1,0 +1,27 @@
+---
+import type { UltType } from "../../../types.astro";
+
+export interface Props {
+  ult: UltType;
+}
+
+const { likes, datetime } = Astro.props.ult;
+---
+
+<div>
+  <p id="likes">{likes} &#10084;</p>
+  <p id="datetime">
+    {new Date(datetime).toLocaleTimeString()} - {
+      new Date(datetime).toLocaleDateString()
+    }
+  </p>
+</div>
+
+<style>
+  #likes {
+    float: right;
+  }
+  #datetime {
+    float: left;
+  }
+</style>

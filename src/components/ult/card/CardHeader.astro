@@ -1,0 +1,37 @@
+---
+import type { UserType } from "../../../types.astro";
+
+export interface Props {
+  user: UserType;
+}
+const { user } = Astro.props;
+const { profilePicture, name, username } = user;
+---
+
+<div class="card-header">
+  <div>
+    <img class="profile" src={profilePicture} />
+  </div>
+  <div class="user-info">
+    <p>{name}</p>
+    <p>@{username}</p>
+  </div>
+</div>
+
+<style>
+  .card-header {
+    display: flex;
+    height: 50px;
+  }
+  .user-info {
+    display: flex;
+    flex-direction: column;
+    margin: auto 0 auto 0;
+  }
+  img.profile {
+    margin-right: 20px;
+  }
+  p {
+    margin: 0;
+  }
+</style>
