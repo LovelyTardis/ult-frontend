@@ -1,5 +1,8 @@
 ---
+import apiCall from "../../helpers/apiCall";
+import tryConnection from "../../helpers/tryConnection";
 import type { UltType } from "../../types.astro";
+import ErrorDisplay from "../ErrorDisplay.astro";
 import CardFooter from "./card/CardFooter.astro";
 import CardHeader from "./card/CardHeader.astro";
 
@@ -10,18 +13,23 @@ export interface Props {
 const { ult } = Astro.props;
 const { message, _id, user } = ult;
 
-const userById = await fetch(`${import.meta.env.DEV_API}/user/id/${user}`);
-const { data } = await userById.json();
+const connected = await tryConnection();
+const { data, error, code } =
+  connected !== true ? connected : await apiCall(`/user/id/${user}`);
 ---
 
 <div class="link-card">
-  <a href={`/ult/${_id}`}>
-    <CardHeader user={data} />
-    <p>
-      {message}
-    </p>
-    <CardFooter ult={ult} />
-  </a>
+  {
+    !error ? (
+      <a href={`/ult/${_id}`}>
+        <CardHeader user={data} />
+        <p>{message}</p>
+        <CardFooter ult={ult} />
+      </a>
+    ) : (
+      <ErrorDisplay message={data} code={code} />
+    )
+  }
 </div>
 
 <style>
