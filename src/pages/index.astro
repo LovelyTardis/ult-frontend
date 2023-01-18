@@ -1,13 +1,22 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import UltContainer from "../components/ult/UltContainer.astro";
+import ErrorDisplay from "../components/ErrorDisplay.astro";
+import tryConnection from "../helpers/tryConnection";
+import apiCall from "../helpers/apiCall";
 
-// TODO: load random ults
-const userData = await fetch(`http://localhost:8000/user/LovelyTardis`);
-const { data, error, code } = await userData.json();
+const connected = await tryConnection();
+const { error, code, data } =
+  connected !== true ? connected : await apiCall("/user/LovelyTardis");
 ---
 
 <Layout title="Ult - index">
   <h1>HOME PAGE</h1>
-  <UltContainer data={data} />
+  {
+    !error ? (
+      <UltContainer data={data} />
+    ) : (
+      <ErrorDisplay message={data} code={code} />
+    )
+  }
 </Layout>
