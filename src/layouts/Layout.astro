@@ -1,11 +1,14 @@
 ---
-import SideNavigator from "../components/SideNavigator.astro";
+import SideNavigator from "../components/side-navigator/SideNavigator.astro";
 
 export interface Props {
   title: string;
 }
-
 const { title } = Astro.props;
+
+// const user = await fetch(`${import.meta.env.DEV_API}/user/LovelyTardis`);
+// const { code, error, data } = await user.json();
+// if (error) return Astro.redirect("/login");
 ---
 
 <!DOCTYPE html>
@@ -18,7 +21,7 @@ const { title } = Astro.props;
     <title>{title}</title>
   </head>
   <body>
-    <div class="separator">
+    <div class="separator-block">
       <div class="main">
         <slot />
       </div>
@@ -28,6 +31,7 @@ const { title } = Astro.props;
     </div>
   </body>
 </html>
+
 <style is:global>
   :root {
     --accent: 124, 58, 237;
@@ -44,15 +48,7 @@ const { title } = Astro.props;
     /* FIXME: delete the black block */
     border: 1px solid black;
   }
-  html {
-    font-family: system-ui, sans-serif;
-    background-color: #f6f6f6;
-  }
-  code {
-    font-family: Menlo, Monaco, Lucida Console, Liberation Mono,
-      DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace;
-  }
-  .separator {
+  .separator-block {
     display: flex;
   }
   .main {
@@ -64,6 +60,14 @@ const { title } = Astro.props;
     width: 20%;
     padding: 10px;
     border: 1px solid green;
+  }
+  html {
+    font-family: system-ui, sans-serif;
+    background-color: #f6f6f6;
+  }
+  code {
+    font-family: Menlo, Monaco, Lucida Console, Liberation Mono,
+      DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace;
   }
   img.profile {
     width: 50px;
