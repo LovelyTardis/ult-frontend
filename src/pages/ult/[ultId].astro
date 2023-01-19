@@ -1,0 +1,22 @@
+---
+import ErrorDisplay from "../../components/ErrorDisplay.astro";
+import UltCard from "../../components/ult/UltCard.astro";
+import { apiCall, tryConnection } from "../../helpers/index";
+import Layout from "../../layouts/Layout.astro";
+
+const { ultId } = Astro.params;
+
+const connected = await tryConnection();
+const { error, code, data } =
+  connected !== true ? connected : await apiCall(`/ult/${ultId}`);
+---
+
+<Layout title="Ult - message">
+  {
+    !error ? (
+      <UltCard ult={data} />
+    ) : (
+      <ErrorDisplay message={data} code={code} />
+    )
+  }
+</Layout>
