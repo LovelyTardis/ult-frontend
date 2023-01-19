@@ -7,13 +7,34 @@ export interface Props {
 const { href, text } = Astro.props;
 ---
 
-<button>
-  <a href={href}>
-    {text}
-  </a>
-</button>
+<custom-button data-href={href}>
+  <button>
+    <p>
+      {text}
+    </p>
+  </button>
+</custom-button>
 
 <style>
   button {
+    width: 100%;
+    margin: 10px 0 10px 0;
   }
 </style>
+
+<script>
+  class CustomButton extends HTMLElement {
+    constructor() {
+      super();
+
+      const href = this.dataset.href;
+      const button = this.querySelectorAll("button");
+
+      button[0].addEventListener("click", () => {
+        window.location = href;
+      });
+    }
+  }
+
+  customElements.define("custom-button", CustomButton);
+</script>
