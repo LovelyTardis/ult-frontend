@@ -1,7 +1,6 @@
 ---
-import apiCall from "../../helpers/apiCall";
-import tryConnection from "../../helpers/tryConnection";
-import type { UltType } from "../../types.astro";
+import { apiCall, tryConnection } from "../../helpers/index";
+import type { UltType } from "../../types";
 import ErrorDisplay from "../ErrorDisplay.astro";
 import CardFooter from "./card/CardFooter.astro";
 import CardHeader from "./card/CardHeader.astro";
@@ -47,21 +46,14 @@ const { data, error, code } =
       0 2px 4px -2px rgba(0, 0, 0, 0.1);
   }
   .link-card > a {
+    display: flex;
+    flex-direction: column;
     width: 100%;
     text-decoration: none;
-    line-height: 1.4;
-    padding: 1rem 1.3rem;
+    padding: 20px;
     border-radius: 0.35rem;
     color: #111;
     background-color: white;
-    opacity: 0.8;
-  }
-  .datetime {
-  }
-  p {
-    margin-top: 0.5rem;
-    margin-bottom: 0;
-    color: #444;
   }
   .link-card:is(:hover, :focus-within) {
     background-position: 0;

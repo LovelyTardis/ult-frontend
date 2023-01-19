@@ -2,12 +2,11 @@
 import Layout from "../layouts/Layout.astro";
 import UltContainer from "../components/ult/UltContainer.astro";
 import ErrorDisplay from "../components/ErrorDisplay.astro";
-import tryConnection from "../helpers/tryConnection";
-import apiCall from "../helpers/apiCall";
+import { apiCall, tryConnection } from "../helpers/index";
 
 const connected = await tryConnection();
 const { error, code, data } =
-  connected !== true ? connected : await apiCall("/user/LovelyTardis");
+  connected !== true ? connected : await apiCall("/ult");
 ---
 
 <Layout title="Ult - index">

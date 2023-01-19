@@ -2,8 +2,7 @@
 import ErrorDisplay from "../../components/ErrorDisplay.astro";
 import CardHeader from "../../components/ult/card/CardHeader.astro";
 import UltContainer from "../../components/ult/UltContainer.astro";
-import apiCall from "../../helpers/apiCall";
-import tryConnection from "../../helpers/tryConnection";
+import {apiCall, tryConnection} from "../../helpers/index";
 import Layout from "../../layouts/Layout.astro";
 
 const { username: usernameParam } = Astro.params;
@@ -15,6 +14,7 @@ const {error, code, data} =
 
 <Layout title={`${usernameParam} - profile`}>
   <>
+  <!-- TODO: <CardHeader /> -> <ProfileHeader /> -->
   {
     !error ? (
       <CardHeader user={data} />

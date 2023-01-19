@@ -1,6 +1,7 @@
 ---
-import type { UltType, UserType } from "../../types.astro";
+import type { UltType, UserType } from "../../types";
 import UltCard from "./UltCard.astro";
+import { ultsSort } from "../../helpers";
 
 export interface Props {
   data: UserType;
@@ -8,6 +9,8 @@ export interface Props {
 
 const { data } = Astro.props;
 const { ults } = data;
+
+ultsSort(ults);
 ---
 
 <div class="ult-container">
