@@ -1,4 +1,3 @@
----
 export type UltType = {
   _id: string;
   message: string;
@@ -13,4 +12,3 @@ export type UserType = {
   profilePicture: string;
   ults: Array<UltType>;
 };
----
