@@ -1,4 +1,4 @@
-const tryConnection = async () => {
+export const tryConnection = async () => {
   try {
     await fetch(`${import.meta.env.DEV_API}`);
     return true;
@@ -10,5 +10,3 @@ const tryConnection = async () => {
     };
   }
 };
-
-export default tryConnection;
