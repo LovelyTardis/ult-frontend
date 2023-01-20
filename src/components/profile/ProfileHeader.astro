@@ -1,0 +1,53 @@
+---
+const { user } = Astro.props;
+const { name, username, profilePicture, biography } = user;
+---
+
+<header class="profile-header">
+  <div class="profile-header-img-biography">
+    <img
+      class="profile-header-img"
+      src={profilePicture}
+      alt={`${username} profile picture`}
+    />
+    <div class="profile-header-user-info">
+      <p>{name}</p>
+      <b>@{username}</b>
+    </div>
+  </div>
+  <div class="profile-header-biography">
+    <p>Bio:</p>
+    {
+      biography.startsWith("https://") ? (
+        <a href={biography}>{biography}</a>
+      ) : (
+        <p>{biography}</p>
+      )
+    }
+  </div>
+</header>
+
+<style>
+  .profile-header {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    padding: 20px 0;
+  }
+  .profile-header-img-biography {
+    display: flex;
+  }
+  .profile-header-img {
+    margin: 0 30px 10px 0;
+  }
+  .profile-header-biography {
+  }
+  .profile-header-user-info {
+  }
+  b {
+    font-size: larger;
+  }
+  p {
+    margin: 0;
+  }
+</style>
