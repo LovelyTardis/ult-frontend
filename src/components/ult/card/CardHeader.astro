@@ -1,5 +1,5 @@
 ---
-import type { UserType } from "../../../types.astro";
+import type { UserType } from "../../../types";
 
 export interface Props {
   user: UserType;
@@ -9,12 +9,17 @@ const { profilePicture, name, username } = user;
 ---
 
 <div class="card-header">
-  <div>
-    <img class="profile" src={profilePicture} />
-  </div>
+  <!-- TODO: on click image, redirect to the user profile -->
+  <!-- <a href={`/profile/${username}`}> -->
+  <img
+    class="card-header-img"
+    src={profilePicture}
+    alt={`${username} profile picture`}
+  />
+  <!-- </a> -->
   <div class="user-info">
     <p>{name}</p>
-    <p>@{username}</p>
+    <b>@{username}</b>
   </div>
 </div>
 
@@ -26,10 +31,7 @@ const { profilePicture, name, username } = user;
   .user-info {
     display: flex;
     flex-direction: column;
-    margin: auto 0 auto 0;
-  }
-  img.profile {
-    margin-right: 20px;
+    margin: auto 0 auto 20px;
   }
   p {
     margin: 0;

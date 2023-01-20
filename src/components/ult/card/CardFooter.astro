@@ -1,5 +1,5 @@
 ---
-import type { UltType } from "../../../types.astro";
+import type { UltType } from "../../../types";
 
 export interface Props {
   ult: UltType;
@@ -9,8 +9,9 @@ const { likes, datetime } = Astro.props.ult;
 ---
 
 <div>
-  <p id="likes">{likes} &#10084;</p>
-  <p id="datetime">
+  <p class="likes">{likes} &#10084;</p>
+  <p class="likes">{likes} comments</p>
+  <p class="datetime">
     {new Date(datetime).toLocaleTimeString()} - {
       new Date(datetime).toLocaleDateString()
     }
@@ -18,10 +19,14 @@ const { likes, datetime } = Astro.props.ult;
 </div>
 
 <style>
-  #likes {
-    float: right;
+  div {
+    display: flex;
+    flex-direction: row;
   }
-  #datetime {
-    float: left;
+  .likes {
+    padding-right: 2rem;
+  }
+  .datetime {
+    margin-left: auto;
   }
 </style>
