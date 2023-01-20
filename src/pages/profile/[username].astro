@@ -1,6 +1,6 @@
 ---
 import ErrorDisplay from "../../components/ErrorDisplay.astro";
-import CardHeader from "../../components/ult/card/CardHeader.astro";
+import ProfileHeader from "../../components/profile/ProfileHeader.astro";
 import UltContainer from "../../components/ult/UltContainer.astro";
 import {apiCall, tryConnection} from "../../helpers/index";
 import Layout from "../../layouts/Layout.astro";
@@ -12,12 +12,11 @@ const {error, code, data} =
   connected !== true ? connected : await apiCall(`/user/${usernameParam}`);
 ---
 
-<Layout title={`${usernameParam} - profile`}>
+<Layout title={`${usernameParam} - profile`} mainHeader="Profile">
   <>
-  <!-- TODO: <CardHeader /> -> <ProfileHeader /> -->
   {
     !error ? (
-      <CardHeader user={data} />
+      <ProfileHeader user={data} />
       <h3>Last user ults</h3>
       <UltContainer data={data} />
       ) : (
