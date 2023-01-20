@@ -9,8 +9,7 @@ const { error, code, data } =
   connected !== true ? connected : await apiCall("/ult");
 ---
 
-<Layout title="Ult - index">
-  <h1>HOME PAGE</h1>
+<Layout title="Ult - index" mainHeader="Home">
   {
     !error ? (
       <UltContainer data={data} />
