@@ -4,6 +4,7 @@ import type { UltType } from "../../types";
 import ErrorDisplay from "../ErrorDisplay.astro";
 import CardFooter from "./card/CardFooter.astro";
 import CardHeader from "./card/CardHeader.astro";
+import CardMessage from "./card/CardMessage.astro";
 
 export interface Props {
   ult: UltType;
@@ -22,7 +23,7 @@ const { data, error, code } =
     !error ? (
       <a href={`/ult/${_id}`}>
         <CardHeader user={data} />
-        <p>{message}</p>
+        <CardMessage message={message} />
         <CardFooter ult={ult} />
       </a>
     ) : (
@@ -34,6 +35,7 @@ const { data, error, code } =
 <style>
   .link-card {
     display: flex;
+    /* flex-direction: column; */
     padding: 0.15rem;
     margin: 10px 0;
     background-color: white;
