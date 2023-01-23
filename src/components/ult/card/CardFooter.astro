@@ -9,9 +9,9 @@ const { likes, datetime } = Astro.props.ult;
 ---
 
 <div>
-  <p class="likes">{likes} &#10084;</p>
-  <p class="likes">{likes} comments</p>
-  <p class="datetime">
+  <p class="left">{likes} &#10084;</p>
+  <p class="left">{likes} comments</p>
+  <p class="right">
     {new Date(datetime).toLocaleTimeString()} - {
       new Date(datetime).toLocaleDateString()
     }
@@ -23,10 +23,10 @@ const { likes, datetime } = Astro.props.ult;
     display: flex;
     flex-direction: row;
   }
-  .likes {
+  .left {
     padding-right: 2rem;
   }
-  .datetime {
+  .right {
     margin-left: auto;
   }
 </style>
