@@ -3,19 +3,11 @@ import SideNavigatorButton from "./SideNavigatorButton.astro";
 ---
 
 <nav>
-  <li>
-    <SideNavigatorButton href="/" text="Home" />
-  </li>
-  <li>
-    <SideNavigatorButton href="/profile/LovelyTardis" text="Profile" />
-  </li>
-  <li>
-    <SideNavigatorButton href="/" text="IDK algo más" />
-  </li>
+  <SideNavigatorButton href="/" text="Home" iconName="home" />
+  <SideNavigatorButton
+    href="/profile/LovelyTardis"
+    text="Profile"
+    iconName="account_circle"
+  />
+  <!-- <SideNavigatorButton href="/" text="IDK algo más" /> -->
 </nav>
-
-<style>
-  li {
-    list-style: none;
-  }
-</style>

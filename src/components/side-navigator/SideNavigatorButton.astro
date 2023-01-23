@@ -2,13 +2,15 @@
 export interface Props {
   href: string;
   text: string;
+  iconName: string;
 }
 
-const { href, text } = Astro.props;
+const { href, text, iconName } = Astro.props;
 ---
 
-<custom-button data-href={href}>
-  <button>
+<custom-button class="custom-button" data-href={href} data-text={text}>
+  <button id={text}>
+    <i class="material-icons">{iconName}</i>
     <p>
       {text}
     </p>
@@ -17,8 +19,12 @@ const { href, text } = Astro.props;
 
 <style>
   button {
+    display: flex;
     width: 100%;
     margin: 10px 0 10px 0;
+  }
+  button > i {
+    margin: auto 10px;
   }
 </style>
 
@@ -28,11 +34,14 @@ const { href, text } = Astro.props;
       super();
 
       const href = this.dataset.href;
-      const button = this.querySelectorAll("button");
+      const text = this.dataset.text;
+      const button = this.querySelector(`#${text}`);
 
-      button[0].addEventListener("click", () => {
-        window.location = href;
-      });
+      if (button) {
+        button.addEventListener("click", () => {
+          window.location = href;
+        });
+      }
     }
   }
 
