@@ -15,6 +15,10 @@ const { title, mainHeader } = Astro.props;
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
     <title>{title}</title>
   </head>
   <body>
@@ -41,24 +45,21 @@ const { title, mainHeader } = Astro.props;
     );
   }
   body {
-    width: 80%;
+    width: 70%;
     margin: 10px auto;
-    /* FIXME: delete the black block */
-    border: 1px solid black;
   }
   .separator-block {
     display: flex;
+    padding: 20px;
   }
   .main {
-    width: 80%;
-    padding: 20px;
-    border: 1px solid red;
+    width: 75%;
   }
-
   .nav {
-    width: 20%;
-    padding: 10px;
+    width: 25%;
     border: 1px solid green;
+    border-radius: 10px;
+    margin: 20px;
   }
   html {
     font-family: system-ui, sans-serif;
