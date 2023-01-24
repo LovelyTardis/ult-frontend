@@ -1,6 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import UltContainer from "../components/ult/UltContainer.astro";
+// import UltContainer from "../components/ult/UltContainer.astro";
+import UltContainer from "../components/ult/UltContainer";
 import UltCreate from "../components/ult/UltCreate.astro";
 import ErrorDisplay from "../components/ErrorDisplay.astro";
 import { apiCall, tryConnection } from "../helpers/index";
@@ -11,11 +12,12 @@ const { error, code, data } =
 ---
 
 <Layout title="Ult - index" mainHeader="Home">
+  <!-- <UltContainer data={data} /> -->
   {
     !error ? (
       <>
         <UltCreate />
-        <UltContainer data={data} />
+        <UltContainer client:load />
       </>
     ) : (
       <ErrorDisplay message={data} code={code} />
