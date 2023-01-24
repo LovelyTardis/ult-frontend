@@ -1,7 +1,7 @@
 ---
 import ErrorDisplay from "../../components/ErrorDisplay.astro";
 import ProfileHeader from "../../components/profile/ProfileHeader.astro";
-import UltContainer from "../../components/ult/UltContainer.astro";
+import UltContainer from "../../components/ult/UltContainer";
 import {apiCall, tryConnection} from "../../helpers/index";
 import Layout from "../../layouts/Layout.astro";
 
@@ -18,7 +18,7 @@ const {error, code, data} =
     !error ? (
       <ProfileHeader user={data} />
       <h3>Last user ults</h3>
-      <UltContainer data={data} />
+      <UltContainer client:load />
       ) : (
         <ErrorDisplay message={data} code={code} />
     )
