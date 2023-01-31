@@ -4,20 +4,20 @@ import type { UltType } from "../../types";
 
 import { apiCall, tryConnection } from "../../helpers";
 import UltCard from "./UltCard";
-// import ErrorDisplay from "../ErrorDisplay.astro";
+import ErrorDisplay from "../ErrorDisplay";
 // import UltCard from "./UltCard.astro";
 
 function UltContainer() {
+  let error = false,
+    code,
+    data;
   const [ults, setUlts] = useState<UltType[]>([]);
 
   const fetchData = async () => {
     try {
       const connected = await tryConnection();
-      const {
-        error = false,
-        code,
-        data,
-      } = connected !== true ? connected : await apiCall("/ult");
+      ({ error, code, data } =
+        connected !== true ? connected : await apiCall("/ult"));
 
       if (error) throw new Error(code, data);
 
@@ -40,8 +40,7 @@ function UltContainer() {
           return <UltCard key={ult._id} ult={ult} />;
         })
       ) : (
-        <h2>ERROR</h2>
-        // <ErrorDisplay />
+        <ErrorDisplay message={data} code={code} />
       )}
     </div>
   );

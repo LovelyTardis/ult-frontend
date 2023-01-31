@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 
 import type { UltType, UserType } from "../../types";
+import { apiCall, tryConnection } from "../../helpers";
+
 import CardHeader from "./card/CardHeader";
 import CardMessage from "./card/CardMessage";
 import CardFooter from "./card/CardFooter";
-import { apiCall, tryConnection } from "../../helpers";
+import ErrorDisplay from "../ErrorDisplay";
 
 interface Props {
   ult: UltType;
@@ -47,16 +49,17 @@ function UltCard({ ult }: Props) {
       backgroundColor: "white",
     },
   };
+
   const { message, _id, user } = ult;
+  let error = false,
+    code,
+    data;
 
   const fetchData = async () => {
     try {
       const connected = await tryConnection();
-      const {
-        error = false,
-        code,
-        data,
-      } = connected !== true ? connected : await apiCall(`/user/id/${user}`);
+      ({ error, code, data } =
+        connected !== true ? connected : await apiCall(`/user/id/${user}`));
 
       if (error) throw new Error(code, data);
 
@@ -85,15 +88,15 @@ function UltCard({ ult }: Props) {
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      <a href={`/ult/${_id}`} style={styles["a-href"]}>
-        <CardHeader user={userData} />
-        <CardMessage message={message} />
-        <CardFooter ult={ult} />
-      </a>
-      {/* {!error ? (
+      {!error ? (
+        <a href={`/ult/${_id}`} style={styles["a-href"]}>
+          <CardHeader user={userData} />
+          <CardMessage message={message} />
+          <CardFooter ult={ult} />
+        </a>
       ) : (
         <ErrorDisplay message={data} code={code} />
-      )} */}
+      )}
     </div>
   );
 }
