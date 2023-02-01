@@ -1,0 +1,16 @@
+.create-ult {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+  justify-content: space-between;
+}
+.ult-text {
+  width: auto;
+  height: 100px;
+  resize: none;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: medium;
+}
+.button-create {
+  width: 100px;
+}
