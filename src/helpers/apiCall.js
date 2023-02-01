@@ -1,10 +1,6 @@
-export const apiCall = async (
-  path: string,
-  method: string = "GET",
-  body: object = {}
-) => {
+export const apiCall = async (path, method = "GET", body = {}) => {
   let call = null;
-  const url = "http://localhost:8000";
+  const url = import.meta.env.VITE_DEVAPI;
 
   try {
     switch (method) {

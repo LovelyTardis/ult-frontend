@@ -1,8 +1,9 @@
----
-const apiUrl = import.meta.env.DEV_API;
----
+// ---
+// const apiUrl = import.meta.env.DEV_API;
+// ---
 
-<form class="create-ult">
+{
+  /* <form class="create-ult">
   <textarea
     name="ult-text"
     placeholder="Write your feelings..."
@@ -61,4 +62,5 @@ const apiUrl = import.meta.env.DEV_API;
       console.log("DATA:", data);
     })();
   });
-</script>
+</script> */
+}

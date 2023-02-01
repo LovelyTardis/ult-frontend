@@ -1,6 +1,6 @@
 export const tryConnection = async () => {
   try {
-    await fetch(`${import.meta.env.DEV_API}`);
+    await fetch(`${import.meta.env.VITE_DEVAPI}`);
     return true;
   } catch (_) {
     return {

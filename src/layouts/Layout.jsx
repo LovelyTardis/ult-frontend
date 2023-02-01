@@ -1,19 +1,25 @@
-import SideNavigator from "../components/side-navigator/SideNavigator.astro";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+// import SideNavigator from "../components/side-navigator/SideNavigator.astro";
+import { ROUTES } from "../routes";
 
-const Layout = ({children, mainHeader}) => {
+export default function Layout() {
+  const router = createBrowserRouter(Object.values(ROUTES));
+
   return (
-    <body>
-    <div class="separator-block">
-      <div class="main">
-        {mainHeader && <h2>{mainHeader}</h2>}
-        {children}
+    <>
+      <div className="container">
+        <section id="router">
+          <RouterProvider router={router} />
+        </section>
+        <section id="sidebar">
+          <nav>
+            <li>Hola buenas</li>
+            <li>Hola buenas</li>
+            <li>Hola buenas</li>
+          </nav>
+          {/* <SideBar /> */}
+        </section>
       </div>
-      <div class="nav">
-        <SideNavigator />
-      </div>
-    </div>
-  </body>
-  )
+    </>
+  );
 }
-
-export default Layout;

@@ -7,11 +7,10 @@
 // const { error, code, data } =
 //   connected !== true ? connected : await apiCall("/ult");
 
-function Landing() {
-  console.log("Buenas soy el landing");
+export default function Home() {
   return (
     <>
-      <h1>Landing</h1>
+      <h1>HOME PAGE</h1>
       <h2>Aqui hay cosas</h2>
     </>
     // <Layout title="Ult - index" mainHeader="Home">
@@ -23,5 +22,3 @@ function Landing() {
     // </Layout>
   );
 }
-
-export default Landing;
