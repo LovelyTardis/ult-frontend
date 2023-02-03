@@ -1,13 +1,8 @@
 import React from "react";
-import { useState } from "react";
 import { apiCall } from "../../helpers/apiCall";
 import styles from "./UltCreate.module.css";
 
-export default function UltCreate() {
-  const [formValues, setFormValues] = useState({
-    message: "",
-  });
-
+export default function UltCreate({ refreshUlts }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     const textAreaValue = e.target[0].value;
@@ -22,8 +17,10 @@ export default function UltCreate() {
           console.error(code, data);
           return;
         }
+        refreshUlts();
+        e.target[0].value = "";
 
-        console.log("Ult created correctly");
+        // TODO: PUSH A NOTIFICATION OR SOMETHING
       } catch (err) {
         console.error(err);
       }
@@ -40,20 +37,9 @@ export default function UltCreate() {
         maxLength={100}
         className={styles["ult-text"]}
       ></textarea>
-      {/* <input
-        className={styles["button-create"]}
-        type="submit"
-        name="Post ult"
-      /> */}
       <button className={styles["button-create"]} type="submit">
         Post ult
       </button>
     </form>
   );
-}
-
-{
-  /* <script define:vars={{ apiUrl }}>
-
-</script> */
 }
