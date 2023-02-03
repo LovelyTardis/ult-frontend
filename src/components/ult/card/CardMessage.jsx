@@ -1,7 +1,3 @@
-interface Props {
-  message: string;
-}
-
 const styles = {
   "p-message": {
     margin: "30px",
@@ -9,7 +5,7 @@ const styles = {
   },
 };
 
-function CardMessage({ message }: Props) {
+function CardMessage({ message }) {
   return <p style={styles["p-message"]}>{message}</p>;
 }
 

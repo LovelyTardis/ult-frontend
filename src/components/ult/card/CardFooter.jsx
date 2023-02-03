@@ -1,9 +1,3 @@
-import type { UltType } from "../../../types";
-
-interface Props {
-  ult: UltType;
-}
-
 const styles = {
   "div-all": {
     display: "flex",
@@ -15,7 +9,7 @@ const styles = {
   right: { marginLeft: "auto" },
 };
 
-function CardFooter({ ult }: Props) {
+function CardFooter({ ult }) {
   const { likes, datetime } = ult;
 
   return (

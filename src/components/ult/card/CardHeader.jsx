@@ -1,9 +1,3 @@
-import type { UserType } from "../../../types";
-
-interface Props {
-  user: UserType;
-}
-
 const styles = {
   "card-header": {
     display: "flex",
@@ -17,7 +11,7 @@ const styles = {
   "p-name": { margin: "0" },
 };
 
-function CardHeader({ user }: Props) {
+function CardHeader({ user }) {
   const { profilePicture, username, name } = user;
 
   return (
