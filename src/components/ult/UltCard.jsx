@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import styles from "./UltCard.module.css";
+import "./UltCard.css";
 
 import { apiCall, tryConnection } from "../../helpers";
 
@@ -41,9 +41,9 @@ function UltCard({ ult }) {
   }, []);
 
   return (
-    <div className={styles["link-card"]}>
+    <div className="link-card">
       {!error ? (
-        <a href={`/ult/${_id}`} className={styles["a-href"]}>
+        <a href={`/ult/${_id}`} className="a-href">
           <CardHeader user={userData} />
           <CardMessage message={message} />
           <CardFooter ult={ult} />

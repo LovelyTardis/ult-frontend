@@ -1,6 +1,6 @@
 import React from "react";
 import { apiCall } from "../../helpers/apiCall";
-import styles from "./UltCreate.module.css";
+import "./UltCreate.css";
 
 export default function UltCreate({ refreshUlts }) {
   const handleSubmit = (e) => {
@@ -28,16 +28,16 @@ export default function UltCreate({ refreshUlts }) {
   };
 
   return (
-    <form className={styles["create-ult"]} onSubmit={handleSubmit}>
+    <form className="create-ult" onSubmit={handleSubmit}>
       <textarea
         name="ult-text"
         placeholder="Write your feelings..."
         autoCapitalize="sentences"
         minLength={1}
         maxLength={100}
-        className={styles["ult-text"]}
+        className="ult-text"
       ></textarea>
-      <button className={styles["button-create"]} type="submit">
+      <button className="button-create" type="submit">
         Post ult
       </button>
     </form>
