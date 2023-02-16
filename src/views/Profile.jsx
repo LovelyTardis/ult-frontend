@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ProfileHeader from "../components/profile/ProfileHeader";
+import { UltContainer } from "../components/ult";
+import { tryConnection } from "../helpers";
 import { apiCall } from "../helpers/apiCall";
 // import { tryConnection } from "../helpers/tryConnection";
 
@@ -12,18 +14,35 @@ export default function Profile() {
     likedUlts: "",
     name: "",
     profilePicture: "",
-    ults: "",
+    ults: {},
   });
+
+  let error, data, code;
+
+  const fetchData = async (controller = new AbortController()) => {
+    try {
+      const connected = await tryConnection(controller.signal);
+      ({ error, code, data } =
+        connected !== true
+          ? connected
+          : await apiCall(`/user/${username}`, "GET", {}, controller.signal));
+
+      if (error) throw new Error(code, data);
+
+      setUserProfile(data);
+    } catch (err) {
+      if (err.name !== "AbortError") console.error({ data, code });
+    }
+  };
 
   useEffect(() => {
     document.title = `Profile - ${username}`;
 
-    apiCall(`/user/${username}`)
-      .then((res) => {
-        if (res.error) return;
-        setUserProfile(res.data);
-      })
-      .catch((err) => console.error(err));
+    let controller = new AbortController();
+    fetchData(controller);
+    return () => {
+      controller.abort();
+    };
   }, [username]);
 
   const { biography, email, name, profilePicture, likedUlts, ults } =
@@ -34,9 +53,9 @@ export default function Profile() {
   return (
     <div>
       {dataHeader && <ProfileHeader dataHeader={dataHeader} />}
+      <UltContainer ultsToShow={ults} />
       {/* TODO: map for the ults and likedUlts */}
-      {/* <h1>{likedUlts}</h1> */}
-      {/* <h1>{ults}</h1> */}
+      {/* <UltContainer ultsToShow={likedUlts} /> */}
     </div>
   );
 }
