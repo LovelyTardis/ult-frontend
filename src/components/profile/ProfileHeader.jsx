@@ -1,6 +1,6 @@
 import React from "react";
 
-import styles from "./ProfileHeader.module.css";
+import "./ProfileHeader.css";
 
 export default function ProfileHeader({ dataHeader }) {
   const { profilePicture, username, name, biography } = dataHeader;
@@ -14,10 +14,8 @@ export default function ProfileHeader({ dataHeader }) {
           alt={`${username} profile`}
         />
         <div className="profile-header-user-info">
-          <span className={styles["profile-name"]}>{name}</span>
-          <span className={`${styles["profile-username"]} bold`}>
-            @{username}
-          </span>
+          <span className="profile-name">{name}</span>
+          <span className="profile-username bold">@{username}</span>
         </div>
       </div>
       <div className="profile-header-biography">
