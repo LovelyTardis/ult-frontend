@@ -1,10 +1,6 @@
-import { useEffect } from "react";
+import "./ErrorDisplay.css";
 
 export default function ErrorDisplay({ message, code = 500 }) {
-  useEffect(() => {
-    document.title = "Ult - ERROR";
-  }, []);
-
   return (
     <div className="error-display">
       <h1 className="error-message">{message}</h1>
