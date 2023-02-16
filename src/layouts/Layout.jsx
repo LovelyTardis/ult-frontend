@@ -1,6 +1,7 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-// import SideNavigator from "../components/side-navigator/SideNavigator.astro";
+import SideBar from "../components/sidebar/SideBar";
 import { ROUTES } from "../routes";
+import "./Layout.css";
 
 export default function Layout() {
   const router = createBrowserRouter(Object.values(ROUTES));
@@ -12,12 +13,7 @@ export default function Layout() {
           <RouterProvider router={router} />
         </section>
         <section id="sidebar">
-          <nav>
-            <li>Hola buenas</li>
-            <li>Hola buenas</li>
-            <li>Hola buenas</li>
-          </nav>
-          {/* <SideBar /> */}
+          <SideBar />
         </section>
       </div>
     </>
