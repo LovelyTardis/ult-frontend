@@ -1,0 +1,12 @@
+.sidebar-container {
+  position: sticky;
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+hr {
+  width: 80%;
+  border: 1px solid white;
+}
