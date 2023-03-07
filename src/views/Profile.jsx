@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ProfileHeader from "../components/profile/ProfileHeader";
 import { UltContainer } from "../components/ult";
-import { tryConnection } from "../helpers";
-import { apiCall } from "../helpers/apiCall";
-// import { tryConnection } from "../helpers/tryConnection";
+import ViewTitle from "../components/ViewTitle";
+
+import { tryConnection, apiCall } from "../helpers";
 
 export default function Profile() {
   const { username } = useParams();
@@ -52,6 +52,7 @@ export default function Profile() {
 
   return (
     <div>
+      <ViewTitle title="User profile" />
       {dataHeader && <ProfileHeader dataHeader={dataHeader} />}
       <UltContainer ultsToShow={ults} />
       {/* TODO: map for the ults and likedUlts */}

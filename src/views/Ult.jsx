@@ -2,6 +2,7 @@ import React from "react";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { UltCard } from "../components/ult";
+import ViewTitle from "../components/ViewTitle";
 import { apiCall, tryConnection } from "../helpers";
 
 export default function Ult() {
@@ -31,5 +32,12 @@ export default function Ult() {
 
   console.log("data:", ult);
 
-  return ult && <UltCard ult={ult} />;
+  return (
+    ult && (
+      <>
+        <ViewTitle title="Ult viewer" />
+        <UltCard ult={ult} />
+      </>
+    )
+  );
 }

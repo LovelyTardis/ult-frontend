@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { UltCreate, UltContainer } from "../components/ult";
+import ViewTitle from "../components/ViewTitle";
+
 import { apiCall, tryConnection } from "../helpers";
 
 export default function Home() {
@@ -36,6 +38,7 @@ export default function Home() {
 
   return (
     <>
+      <ViewTitle title="Home" />
       <UltCreate refreshUlts={refreshUlts} />
       <button onClick={refreshUlts}>
         <span className="material-symbols-outlined">autorenew</span>
