@@ -1,3 +1,16 @@
+:root {
+  --main-color: rgb(0, 36, 32);
+}
+
+* {
+  color: #bababa;
+}
+
+html {
+  font-family: system-ui, sans-serif;
+  background-color: black;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -5,11 +18,6 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
 }
 
 .container {
@@ -20,9 +28,8 @@ code {
 
 section#router {
   width: 75%;
-  border: 1px solid red;
 }
 section#sidebar {
   width: 25%;
-  border: 1px solid blue;
+  padding: 0 20px;
 }
