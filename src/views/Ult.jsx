@@ -28,7 +28,7 @@ export default function Ult() {
   useEffect(() => {
     document.title = "Ult - Viewer";
     fetchData();
-  });
+  }, []);
 
   console.log("data:", ult);
 
