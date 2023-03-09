@@ -5,7 +5,7 @@ import "./UltCard.css";
 import { apiCall, tryConnection } from "../../helpers";
 
 import { CardHeader, CardMessage, CardFooter } from "./card";
-import ErrorDisplay from "../ErrorDisplay";
+import ErrorDisplay from "../errors/ErrorDisplay";
 
 function UltCard({ ult }) {
   const initialValues = {

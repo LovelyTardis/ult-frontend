@@ -1,4 +1,4 @@
-import ErrorDisplay from "../components/ErrorDisplay";
+import ErrorDisplay from "../components/errors/ErrorDisplay";
 import { Home, Logout, Profile, Settings, Ult } from "../views";
 
 const errorTexts = {
