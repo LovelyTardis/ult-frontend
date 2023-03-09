@@ -6,8 +6,8 @@ export default function ProfileHeader({ dataHeader }) {
   const { profilePicture, username, name, biography } = dataHeader;
 
   return (
-    <header>
-      <div className="profile-header-img-biography">
+    <header className="profile">
+      <section className="profile-header-img-biography">
         <img
           className="profile-header-img"
           src={profilePicture}
@@ -15,17 +15,20 @@ export default function ProfileHeader({ dataHeader }) {
         />
         <div className="profile-header-user-info">
           <span className="profile-name">{name}</span>
+          <br />
           <span className="profile-username bold">@{username}</span>
         </div>
-      </div>
-      <div className="profile-header-biography">
+      </section>
+      <section className="profile-header-biography">
         {/* FIXME: change this to something better */}
-        {biography.startsWith("https://") ? (
-          <a href={biography}>{biography}</a>
+        {biography.startsWith("https://") || biography.startsWith("www.") ? (
+          <a href={biography} target="_blank">
+            {biography}
+          </a>
         ) : (
           <p>{biography}</p>
         )}
-      </div>
+      </section>
     </header>
   );
 }

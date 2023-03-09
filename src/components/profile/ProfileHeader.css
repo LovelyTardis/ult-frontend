@@ -1,19 +1,30 @@
+header.profile {
+  display: flex;
+}
+
 .profile-header {
   display: flex;
   flex-direction: column;
   height: auto;
   padding: 20px 0;
 }
+
 .profile-header-img-biography {
   display: flex;
+  flex-direction: column;
 }
+
 .profile-header-img {
   margin: 0 30px 10px 0;
 }
-/* .profile-header-biography {
+
+.profile-header-biography {
+
 }
+
 .profile-header-user-info {
-} */
+  margin-bottom: 50px;
+}
 
 .profile-username {
   margin: 0;
