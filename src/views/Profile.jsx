@@ -54,7 +54,12 @@ export default function Profile() {
     <div>
       <ViewTitle title="User profile" />
       {dataHeader && <ProfileHeader dataHeader={dataHeader} />}
-      <UltContainer ultsToShow={ults} />
+      <h3>Latest ULTS from {username}</h3>
+      {ults.length === 0 ? (
+        <h5>This user has no ULTS</h5>
+      ) : (
+        <UltContainer ultsToShow={ults} />
+      )}
       {/* TODO: map for the ults and likedUlts */}
       {/* <UltContainer ultsToShow={likedUlts} /> */}
     </div>
