@@ -1,4 +1,3 @@
-import React from "react";
 import { apiCall } from "../../helpers/apiCall";
 import "./UltCreate.css";
 
