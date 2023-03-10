@@ -19,13 +19,34 @@ header.profile {
 }
 
 .profile-header-biography {
-
+  flex: 1;
+  color: white;
+  height: fit-content;
 }
 
-.profile-header-user-info {
-  margin-bottom: 50px;
+.profile-header-biography > a, p {
+  display: inline-block;
+  text-decoration: none;
+  margin: 10px 20px;
 }
 
-.profile-username {
+.profile-username, .profile-header-biography > h4 {
   margin: 0;
+}
+
+.edit-profile-button {
+  transition: background-color 0.3s ease;
+  border: 3px solid var(--main-color);
+  border-radius: var(--button-br);
+  width: 130px;
+  height: 40px;
+  margin: 20px 0 50px 0;
+  background-color: black;
+  color: white;
+  cursor: pointer;
+}
+
+.edit-profile-button:hover {
+  transition: background-color 0.1s ease;
+  background-color: var(--main-color);
 }
