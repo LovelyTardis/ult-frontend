@@ -1,9 +1,13 @@
-import React from "react";
+import Autolinker from "autolinker";
 
 import "./ProfileHeader.css";
 
 export default function ProfileHeader({ dataHeader }) {
   const { profilePicture, username, name, biography } = dataHeader;
+
+  const editProfile = () => {
+    console.log("Edit profile popup/page");
+  };
 
   return (
     <header className="profile">
@@ -18,16 +22,23 @@ export default function ProfileHeader({ dataHeader }) {
           <br />
           <span className="profile-username bold">@{username}</span>
         </div>
+        {/* TODO: EDIT PROFILE BUTTON MAY APPEAR ONLY FOR THE LOGGED PROFILE */}
+        <button className="edit-profile-button" onClick={editProfile}>
+          Edit profile
+        </button>
       </section>
       <section className="profile-header-biography">
-        {/* FIXME: change this to something better */}
-        {biography.startsWith("https://") || biography.startsWith("www.") ? (
-          <a href={biography} target="_blank">
-            {biography}
-          </a>
-        ) : (
-          <p>{biography}</p>
-        )}
+        <h4>Bio:</h4>
+        {
+          // INFO: dangerouslySetInnerHTML is not recommended!!!
+          //       however It is using "sanitazeHtml" that prevents XSS attacks (TESTED and working).
+          //       If someone tries to write a bio with possible dangerous code, it will not be sent to the backend.
+          <div
+            dangerouslySetInnerHTML={{
+              __html: Autolinker.link(biography, { sanitizeHtml: true }),
+            }}
+          />
+        }
       </section>
     </header>
   );
