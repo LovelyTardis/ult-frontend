@@ -1,29 +1,28 @@
-const styles = {
-  "div-all": {
-    display: "flex",
-    flexDirection: "row",
-  },
-  left: {
-    paddingRight: "2rem",
-  },
-  right: { marginLeft: "auto" },
-};
+import "./CardFooter.css";
 
 function CardFooter({ ult }) {
   const { likes, datetime } = ult;
 
+  const handleClick = (e) => {
+    // TODO: ADD ONE LIKE IN THE DATABASE FOR THE ULT
+    e.stopPropagation();
+  };
+
   return (
-    <div style={styles["div-all"]}>
-      <p className="left" style={styles.left}>
-        {likes} &#10084;
-      </p>
-      <p className="left" style={styles.left}>
-        {likes} comments
-      </p>
-      <p className="right" style={styles.right}>
-        {new Date(datetime).toLocaleTimeString()} -{" "}
-        {new Date(datetime).toLocaleDateString()}
-      </p>
+    <div className="card-footer">
+      <span className="left">
+        <button className="like-button" onClick={handleClick}>
+          {likes} &#10084;
+        </button>
+      </span>
+      <span className="left">{likes} comments</span>
+      <span className="right">
+        {new Date(datetime).toLocaleTimeString(["es-ES", "en-US"], {
+          hour: "2-digit",
+          minute: "2-digit",
+        })}{" "}
+        - {new Date(datetime).toLocaleDateString(["es-ES", "en-US"])}
+      </span>
     </div>
   );
 }
