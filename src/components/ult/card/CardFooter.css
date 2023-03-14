@@ -1,0 +1,23 @@
+.card-footer {
+  display: flex;
+  font: 1em sans-serif;
+}
+.left {
+  padding: 5px 10%;
+}
+.right {
+  margin-left: auto;
+  padding-right: 5px;
+}
+.like-button {
+  transition: border 0.3s ease;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.like-button:hover {
+  transition: border 0.1s ease;
+  border: 1px solid white;
+}
