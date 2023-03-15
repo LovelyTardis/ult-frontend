@@ -1,23 +1,30 @@
-.card-footer {
-  display: flex;
-  height: 28px;
-}
-.left {
-  margin-left: 5%;
-}
-.right {
-  margin: 0 5% 0 auto;
-}
-.like-button {
-  transition: border 0.3s ease;
-  border: 1px solid transparent;
-  border-radius: 10px;
-  background-color: transparent;
-  cursor: pointer;
-  padding: 0;
+:root {
+  --padding-cf: 10px 20px;
 }
 
-.like-button:hover {
-  transition: border 0.1s ease;
-  border: 1px solid white;
+.card-footer {
+  display: flex;
+  height: 50px;
+}
+
+.left {
+  margin-left: 5%;
+  padding: var(--padding-cf);
+}
+
+.right {
+  margin: 0 5% 0 auto;
+  padding: var(--padding-cf);
+}
+
+.like-button {
+  transition: border 0.3s ease;
+  border: 0;
+  background-color: transparent;
+  cursor: pointer;
+  padding: 0 20px;
+}
+
+.liked {
+  color: red;
 }
