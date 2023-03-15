@@ -2,12 +2,11 @@ import { useState } from "react";
 import "./CardFooter.css";
 
 function CardFooter({ ult }) {
-  const { likes: currLikes, datetime } = ult;
-  const currComments = 0;
+  const { likes: currLikes, datetime, comments: currComments } = ult;
 
   const [likes, setLikes] = useState(currLikes);
   const [liked, setLiked] = useState(false);
-  const [comments, setComments] = useState(currComments);
+  const [comments, setComments] = useState(currComments.length);
 
   const handleClick = (e) => {
     // TODO: ADD ONE LIKE IN THE DATABASE FOR THE ULT
