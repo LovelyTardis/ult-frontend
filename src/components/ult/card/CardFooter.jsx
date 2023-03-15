@@ -1,10 +1,21 @@
+import { useState } from "react";
 import "./CardFooter.css";
 
 function CardFooter({ ult }) {
-  const { likes, datetime } = ult;
+  const { likes: currLikes, datetime } = ult;
+  const currComments = 0;
+
+  const [likes, setLikes] = useState(currLikes);
+  const [liked, setLiked] = useState(false);
+  const [comments, setComments] = useState(currComments);
 
   const handleClick = (e) => {
     // TODO: ADD ONE LIKE IN THE DATABASE FOR THE ULT
+    setLiked(!liked);
+    setLikes((current) => current + (liked ? -1 : 1));
+    liked
+      ? e.target.classList.remove("liked")
+      : e.target.classList.add("liked");
     e.stopPropagation();
   };
 
@@ -15,7 +26,8 @@ function CardFooter({ ult }) {
           {likes} &#10084;
         </button>
       </span>
-      <span className="left">{likes} comments</span>
+      {/* TODO: CHANGE NUMBER OF COMMENTS */}
+      <span className="left">{comments} comments</span>
       <span className="right">
         {new Date(datetime).toLocaleTimeString(["es-ES", "en-US"], {
           hour: "2-digit",
