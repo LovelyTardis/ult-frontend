@@ -30,8 +30,6 @@ export default function Ult() {
     fetchData();
   }, []);
 
-  console.log("data:", ult);
-
   return (
     ult && (
       <>
