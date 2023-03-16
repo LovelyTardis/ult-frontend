@@ -19,10 +19,15 @@
 
 .like-button {
   transition: border 0.3s ease;
-  border: 0;
   background-color: transparent;
   cursor: pointer;
   padding: 0 20px;
+  border: 4px solid transparent;
+  border-radius: 5px;
+}
+
+.like-button:hover {
+  border: 4px solid var(--main-color);
 }
 
 .liked {
