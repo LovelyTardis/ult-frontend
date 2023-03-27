@@ -1,6 +1,8 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { RequireAuth } from "../components/auth";
 import SideBar from "../components/sidebar/SideBar";
-import { ROUTES } from "../routes";
+import { Home, Login, Logout, Profile, Settings, Ult } from "../views";
+
 import "./Layout.css";
 
 export default function Layout() {
@@ -10,17 +12,16 @@ export default function Layout() {
         <Router>
           <section id="router">
             <Routes>
-              {
-                // TODO: private and public routes
-                Object.values(ROUTES).map((route) => (
-                  <Route
-                    path={route.path}
-                    element={route.element}
-                    errorElement={route.errorElement}
-                    key={route.path}
-                  />
-                ))
-              }
+              {/* PUBLIC ROUTES */}
+              <Route path="/login" element={<Login />} />
+              <Route path="/profile/:username" element={<Profile />} />
+              <Route path="/ult/:ultId" element={<Ult />} />
+              {/* PRIVATE ROUTES */}
+              <Route element={<RequireAuth />}>
+                <Route path="/" element={<Home />} />
+                <Route path="/settings" element={<Settings />} />
+                <Route path="/logout" element={<Logout />} />
+              </Route>
             </Routes>
           </section>
           <section id="sidebar">
