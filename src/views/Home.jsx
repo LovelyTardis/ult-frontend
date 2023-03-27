@@ -24,7 +24,6 @@ export default function Home() {
   };
 
   useEffect(() => {
-    document.title = "Ult - Home";
     let controller = new AbortController();
     fetchData(controller);
     return () => {

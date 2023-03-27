@@ -36,8 +36,6 @@ export default function Profile() {
   };
 
   useEffect(() => {
-    document.title = `Profile - ${username}`;
-
     let controller = new AbortController();
     fetchData(controller);
     return () => {
