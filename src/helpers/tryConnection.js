@@ -1,5 +1,5 @@
 export const tryConnection = async (signal = null) => {
-  const connected = await fetch(`${import.meta.env.VITE_DEVAPI}`, {
+  const connected = await fetch(`${import.meta.env.VITE_API}`, {
     signal,
   });
 

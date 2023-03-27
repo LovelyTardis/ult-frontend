@@ -5,7 +5,7 @@ export const apiCall = async (
   signal = null
 ) => {
   let call = null;
-  const url = import.meta.env.VITE_DEVAPI;
+  const url = import.meta.env.VITE_API;
 
   switch (method) {
     case "POST":
