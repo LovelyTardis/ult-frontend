@@ -1,19 +1,17 @@
-import React, { createContext } from "react";
+import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
+
+import { Provider } from "react-redux";
+import { store } from "./redux/store";
+
 import Layout from "./layouts/Layout";
 
-let initialContextValues = {
-  ults: {},
-  userId: "",
-};
-
-export const UltContext = createContext(initialContextValues);
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <UltContext.Provider value={UltContext}>
+    <Provider store={store}>
       <Layout />
-    </UltContext.Provider>
+    </Provider>
   </React.StrictMode>
 );
