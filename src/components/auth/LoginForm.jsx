@@ -19,9 +19,11 @@ export function LoginForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const { code, error, data } = await login(username, password);
+    const loginData = await login(username, password);
 
-    if (!error) navigate("/");
+    if (!loginData) return navigate("/");
+
+    const { data, code } = loginData;
     setError(`${data} | Error code: ${code}`);
   };
 
