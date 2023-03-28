@@ -10,9 +10,9 @@ export default function useAuth() {
   const login = async (username, password) => {
     const data = await loginThunk(username, password);
 
-    dispatch(loginAction(data));
+    if (data.error) return data;
 
-    return data;
+    dispatch(loginAction(data.data));
   };
 
   const logout = () => {
