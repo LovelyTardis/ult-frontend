@@ -4,9 +4,11 @@ import useAuth from "../../hooks/useAuth";
 
 export function LoginForm() {
   const usernameRef = useRef();
+  const errorRef = useRef();
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
 
   const navigate = useNavigate();
   const { login } = useAuth();
@@ -17,8 +19,10 @@ export function LoginForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await login(username, password);
-    navigate("/");
+    const { code, error, data } = await login(username, password);
+
+    if (!error) navigate("/");
+    setError(`${data} | Error code: ${code}`);
   };
 
   const handleUserInput = (e) => setUsername(e.target.value);
@@ -46,6 +50,7 @@ export function LoginForm() {
         />
         <button type="submit">Log in</button>
       </form>
+      <p ref={errorRef}>{error}</p>
     </>
   );
 }
