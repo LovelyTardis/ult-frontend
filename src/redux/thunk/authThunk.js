@@ -11,16 +11,8 @@ export const loginThunk = async (username, password) => {
       }),
     });
 
-    const { code, error, data } = await response.json();
-
-    console.log(error);
-    console.log(code);
-    console.log(data);
-
-    if (error) throw new Error(`${code} | ${data}`);
-
-    return data;
-  } catch (error) {
-    return error.message;
+    return await response.json();
+  } catch (_) {
+    return { code: 500, error: true, data: "Error during the login" };
   }
 };
