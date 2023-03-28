@@ -9,7 +9,10 @@ export default function useAuth() {
 
   const login = async (username, password) => {
     const data = await loginThunk(username, password);
+
     dispatch(loginAction(data));
+
+    return data;
   };
 
   const logout = () => {
