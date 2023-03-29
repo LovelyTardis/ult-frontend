@@ -1,10 +1,10 @@
 import { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
+import AuthForm from "./AuthForm";
 
 export function LoginForm() {
   const usernameRef = useRef();
-  const errorRef = useRef();
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -27,32 +27,31 @@ export function LoginForm() {
     setError(`${data} | Error code: ${code}`);
   };
 
-  const handleUserInput = (e) => setUsername(e.target.value);
-  const handlePasswordInput = (e) => setPassword(e.target.value);
+  const inputs = {
+    Username: {
+      type: "text",
+      name: "username",
+      onChange: (e) => setUsername(e.target.value),
+      value: username,
+      ref: usernameRef,
+    },
+    Password: {
+      type: "password",
+      name: "pass1",
+      onChange: (e) => setPassword(e.target.value),
+      value: password,
+    },
+  };
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          name="username"
-          id="username"
-          ref={usernameRef}
-          onChange={handleUserInput}
-          value={username}
-          required
-        />
-        <input
-          type="password"
-          name="password"
-          id="password"
-          onChange={handlePasswordInput}
-          value={password}
-          required
-        />
-        <button type="submit">Log in</button>
-      </form>
-      <p ref={errorRef}>{error}</p>
+      <AuthForm
+        className="form-login"
+        handleSubmit={handleSubmit}
+        inputs={inputs}
+        submitButtonText="Login"
+      />
+      <p>{error}</p>
     </>
   );
 }
