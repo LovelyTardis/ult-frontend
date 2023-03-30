@@ -8,7 +8,7 @@ export default function UltCreate({ refreshUlts }) {
 
     (async () => {
       try {
-        const { error, code, data } = await apiCall("/ult", "POST", {
+        const { error, code, data } = await apiCall("/ult/create", "POST", {
           message: textAreaValue,
         });
 

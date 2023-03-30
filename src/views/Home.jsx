@@ -13,7 +13,7 @@ export default function Home() {
       const { error, code, data } =
         connected !== true
           ? connected
-          : await apiCall("/ult", "GET", {}, controller.signal);
+          : await apiCall("/ult/all", "GET", {}, controller.signal);
 
       if (error) throw new Error(code, data);
 
