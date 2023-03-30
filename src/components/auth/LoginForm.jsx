@@ -1,5 +1,4 @@
 import { useState, useRef, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import AuthForm from "./AuthForm";
 
@@ -10,7 +9,6 @@ export function LoginForm() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
-  const navigate = useNavigate();
   const { login } = useAuth();
 
   useEffect(() => {
@@ -21,7 +19,7 @@ export function LoginForm() {
     e.preventDefault();
     const loginData = await login(username, password);
 
-    if (!loginData) return navigate("/");
+    if (!loginData) return;
 
     const { data, code } = loginData;
     setError(`${data} | Error code: ${code}`);
