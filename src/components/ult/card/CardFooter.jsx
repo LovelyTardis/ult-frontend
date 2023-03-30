@@ -1,12 +1,15 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./CardFooter.css";
 
-function CardFooter({ ult }) {
-  const { likes: currLikes, datetime, comments: currComments } = ult;
-
-  const [likes, setLikes] = useState(currLikes);
+function CardFooter({ ultLikes, ultComments, datetime }) {
+  const [likes, setLikes] = useState(ultLikes);
   const [liked, setLiked] = useState(false);
-  const [comments, setComments] = useState(currComments.length);
+  const [comments, setComments] = useState(ultComments.length);
+
+  useEffect(() => {
+    setLikes(ultLikes);
+    setComments(ultComments.length);
+  }, []);
 
   const handleClick = (e) => {
     // TODO: ADD ONE LIKE IN THE DATABASE FOR THE ULT
@@ -25,7 +28,6 @@ function CardFooter({ ult }) {
           {likes} &#10084;
         </button>
       </span>
-      {/* TODO: CHANGE NUMBER OF COMMENTS */}
       <span className="left">{comments} comments</span>
       <span className="right">
         {new Date(datetime).toLocaleTimeString(["es-ES", "en-US"], {
