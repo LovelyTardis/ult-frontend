@@ -17,10 +17,11 @@ export default function Ult() {
           connected !== true ? connected : await apiCall(`/ult/${ultId}`));
 
         if (error) throw new Error(code, data);
+
+        setUlt(data);
       } catch (_) {
         console.error({ data, code });
       }
-      setUlt(data);
     })();
   }, [ultId]);
 
