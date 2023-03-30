@@ -1,12 +1,7 @@
-const styles = {
-  "p-message": {
-    margin: "30px",
-    height: "auto",
-  },
-};
+import "./CardMessage.css";
 
 function CardMessage({ message }) {
-  return <p style={styles["p-message"]}>{message}</p>;
+  return <p className="card-message">{message}</p>;
 }
 
 export default CardMessage;
