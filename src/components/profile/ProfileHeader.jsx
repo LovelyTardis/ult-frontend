@@ -2,7 +2,7 @@ import Autolinker from "autolinker";
 
 import "./ProfileHeader.css";
 
-export default function ProfileHeader({ dataHeader }) {
+export default function ProfileHeader({ dataHeader, isLoggedProfile }) {
   const { profilePicture, username, name, biography } = dataHeader;
 
   const editProfile = () => {
@@ -22,10 +22,11 @@ export default function ProfileHeader({ dataHeader }) {
           <br />
           <span className="profile-username bold">@{username}</span>
         </div>
-        {/* TODO: EDIT PROFILE BUTTON MAY APPEAR ONLY FOR THE LOGGED PROFILE */}
-        <button className="edit-profile-button" onClick={editProfile}>
-          Edit profile
-        </button>
+        {isLoggedProfile && (
+          <button className="edit-profile-button" onClick={editProfile}>
+            Edit profile
+          </button>
+        )}
       </section>
       <section className="profile-header-biography">
         <h4>Bio:</h4>
