@@ -1,20 +1,33 @@
 import { useDispatch, useSelector } from "react-redux";
-import { loginAction, logoutAction } from "../redux/slices";
+import {
+  endFetching,
+  loginAction,
+  logoutAction,
+  startFeching,
+} from "../redux/slices";
 import { loginThunk, autoLoginThunk } from "../redux/thunk/authThunk";
 
 export default function useAuth() {
   const dispatch = useDispatch();
 
-  const { user, isAuth } = useSelector(({ auth }) => auth);
+  const { user, isAuth, fetching } = useSelector((state) => state.auth);
 
   const autoLogin = async () => {
     const token = localStorage.getItem("user-token");
 
-    if (token === null) return;
+    if (token === null) {
+      dispatch(endFetching());
+      return;
+    }
 
+    dispatch(startFeching());
     const data = await autoLoginThunk(token);
 
-    if (data.error) return data;
+    if (data.error) {
+      dispatch(endFetching());
+      return data;
+    }
+
     dispatch(loginAction(data.data));
   };
 
@@ -29,5 +42,5 @@ export default function useAuth() {
     dispatch(logoutAction());
   };
 
-  return { user, isAuth, login, autoLogin, logout };
+  return { user, isAuth, fetching, login, autoLogin, logout };
 }
