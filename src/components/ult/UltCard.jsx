@@ -8,37 +8,38 @@ import ErrorDisplay from "../errors/ErrorDisplay";
 import { useNavigate } from "react-router-dom";
 
 function UltCard({ ult }) {
+  const { message, _id, user, likes, comments, datetime } = ult;
   const initialValues = {
     profilePicture: "",
     name: "",
     username: "",
-    ults: [],
   };
 
   const [userData, setUserData] = useState(initialValues);
   const navigate = useNavigate();
-  const { message, _id, user } = ult;
   let error = false,
     code,
     data;
 
-  const fetchData = async () => {
-    try {
-      const connected = await tryConnection();
-      ({ error, code, data } =
-        connected !== true ? connected : await apiCall(`/user/id/${user}`));
-
-      if (error) throw new Error(code, data);
-
-      setUserData(data);
-    } catch (err) {
-      console.error(err);
-    }
-  };
-
   useEffect(() => {
-    fetchData();
+    (async () => {
+      try {
+        const connected = await tryConnection();
+        ({ error, code, data } =
+          connected !== true ? connected : await apiCall(`/user/id/${user}`));
+
+        if (error) throw new Error(code, data);
+
+        setUserData(data);
+      } catch (err) {
+        console.error(err);
+      }
+    })();
   }, []);
+
+  const handleClick = () => {
+    navigate(`/ult/${_id}`);
+  };
 
   return (
     <>
@@ -47,11 +48,15 @@ function UltCard({ ult }) {
           className="ult-card"
           tabIndex={0}
           role="button"
-          onClick={() => navigate(`/ult/${_id}`)}
+          onClick={handleClick}
         >
           <CardHeader user={userData} />
           <CardMessage message={message} />
-          <CardFooter ult={ult} />
+          <CardFooter
+            ultLikes={likes}
+            ultComments={comments}
+            datetime={datetime}
+          />
         </div>
       ) : (
         <ErrorDisplay message={data} code={code} />
