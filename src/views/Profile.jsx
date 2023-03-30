@@ -5,21 +5,30 @@ import { UltContainer } from "../components/ult";
 import ViewTitle from "../components/ViewTitle";
 
 import { tryConnection, apiCall } from "../helpers";
+import useAuth from "../hooks/useAuth";
 
 export default function Profile() {
+  const { isAuth, user } = useAuth();
   const { username } = useParams();
-  const [userProfile, setUserProfile] = useState({
-    biography: "",
-    email: "",
-    likedUlts: "",
-    name: "",
-    profilePicture: "",
-    ults: {},
-  });
+  const [isLoggedProfile, setIsLoggedProfile] = useState(false);
+  const [userProfile, setUserProfile] = useState(
+    isAuth & user
+      ? ({ biography, email, likedUlts, name, profilePicture, ults } = user)
+      : {
+          biography: "",
+          email: "",
+          likedUlts: "",
+          name: "",
+          profilePicture: "",
+          ults: {},
+        }
+  );
 
   let error, data, code;
 
   const fetchData = async (controller = new AbortController()) => {
+    if (isLoggedProfile) return;
+
     try {
       const connected = await tryConnection(controller.signal);
       ({ error, code, data } =
@@ -36,22 +45,28 @@ export default function Profile() {
   };
 
   useEffect(() => {
+    if (user?.username === username) {
+      setUserProfile(user);
+      setIsLoggedProfile(true);
+      return;
+    }
     let controller = new AbortController();
     fetchData(controller);
     return () => {
       controller.abort();
     };
-  }, [username]);
+  }, [username, user]);
 
-  const { biography, email, name, profilePicture, likedUlts, ults } =
-    userProfile;
-
+  let { biography, email, name, profilePicture, ults, likedUlts } = userProfile;
   const dataHeader = { biography, email, name, profilePicture, username };
 
   return (
     <div>
       <ViewTitle title="User profile" />
-      {dataHeader && <ProfileHeader dataHeader={dataHeader} />}
+      <ProfileHeader
+        dataHeader={dataHeader}
+        isLoggedProfile={isLoggedProfile}
+      />
       <h3>Latest ULTS from {username}</h3>
       {ults.length === 0 ? (
         <h5>This user has no ULTS</h5>
@@ -63,18 +78,3 @@ export default function Profile() {
     </div>
   );
 }
-
-// biography
-// "Phorza Whorezone V: Maximum Erection"
-// email
-// "eric@gmail.com"
-// likedUlts
-// []
-// name
-// "Eric"
-// profilePicture
-// "https://cdn.discordapp.com/avatars/216238539497668610/c1038feafa1a03aa31926f2da502943a.webp?size=80"
-// ults
-// []
-// username
-// "GunteR_"
