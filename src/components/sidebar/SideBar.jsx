@@ -44,6 +44,7 @@ export default function SideBar() {
 
   return (
     <div className="sidebar-container">
+      {/* TODO: CREATE A SIDEBAR HEADER AND SWAP FOR CardHeader (BUG) */}
       <CardHeader user={userData} />
       <hr />
       {isAuth ? buttons.private : buttons.public}
