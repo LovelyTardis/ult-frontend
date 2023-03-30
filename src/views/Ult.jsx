@@ -9,24 +9,20 @@ export default function Ult() {
   const { ultId } = useParams();
   let error, code, data;
 
-  const fetchData = async () => {
-    try {
-      const connected = await tryConnection();
-      ({ error, code, data } =
-        connected !== true ? connected : await apiCall(`/ult/${ultId}`));
-
-      if (error) throw new Error(code, data);
-    } catch (_) {
-      console.error({ data, code });
-    }
-
-    console.log(data);
-    setUlt(data);
-  };
-
   useEffect(() => {
-    fetchData();
-  }, []);
+    (async () => {
+      try {
+        const connected = await tryConnection();
+        ({ error, code, data } =
+          connected !== true ? connected : await apiCall(`/ult/${ultId}`));
+
+        if (error) throw new Error(code, data);
+      } catch (_) {
+        console.error({ data, code });
+      }
+      setUlt(data);
+    })();
+  }, [ultId]);
 
   return (
     ult && (

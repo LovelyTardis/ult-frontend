@@ -19,10 +19,8 @@ export default function Layout() {
   const { autoLogin, isAuth } = useAuth();
 
   useEffect(() => {
-    (async function tryLogin() {
-      await autoLogin();
-    })();
-  }, []);
+    autoLogin();
+  }, [isAuth]);
 
   return (
     <>
