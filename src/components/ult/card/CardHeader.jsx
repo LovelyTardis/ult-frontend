@@ -1,29 +1,28 @@
-const styles = {
-  "card-header": {
-    display: "flex",
-    height: "50px",
-  },
-  "user-info": {
-    display: "flex",
-    flexDirection: "column",
-    margin: "auto 0 auto 20px",
-  },
-  "p-name": { margin: "0" },
-};
+import { useNavigate } from "react-router-dom";
+import "./CardHeader.css";
 
 function CardHeader({ user }) {
+  const navigate = useNavigate();
   const { profilePicture, username, name } = user;
 
+  const handleClick = (e) => {
+    navigate(`/profile/${username}`);
+    e.stopPropagation();
+  };
+
   return (
-    <div className="card-header" style={styles["card-header"]}>
+    <div className="card-header">
       <img
         className="card-header-img"
         src={profilePicture}
         alt={`${username} profile picture`}
+        onClick={handleClick}
       />
-      <div className="user-info" style={styles["user-info"]}>
-        <p style={styles["p-name"]}>{name}</p>
-        <b>@{username}</b>
+      <div className="user-info">
+        <p className="p-name">{name}</p>
+        <span className="p-username" onClick={handleClick}>
+          @{username}
+        </span>
       </div>
     </div>
   );
