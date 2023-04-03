@@ -1,7 +1,7 @@
 :root {
   --main-color: rgb(0, 36, 32);
   --main-color-a: rgba(0, 36, 32, 0.3);
-  --button-br: 5px;
+  --def-border-radius: 5px;
   --opacity-hover: 0.7;
 }
 

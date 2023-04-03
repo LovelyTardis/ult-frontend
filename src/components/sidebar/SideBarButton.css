@@ -2,7 +2,7 @@
   transition: background-color 0.3s ease;
   text-decoration: none;
   border: 2px solid var(--main-color);
-  border-radius: var(--button-br);
+  border-radius: var(--def-border-radius);
   padding: 15px;
   display: inline-flex;
   align-items: center;
