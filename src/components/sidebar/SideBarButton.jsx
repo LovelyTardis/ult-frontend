@@ -6,7 +6,7 @@ export default function SideBarButton({ props }) {
 
   return (
     <NavLink to={href} className="sidebar-button">
-      <span className="material-symbols-outlined sidebar-icon">{icon}</span>
+      <span className="material-icons sidebar-icon">{icon}</span>
       &nbsp;
       {text}
     </NavLink>
