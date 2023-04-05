@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { UltCard, UltContainer } from "../components/ult";
+import { UltCard, UltContainer, UltCreateAsComment } from "../components/ult";
 import ViewTitle from "../components/ViewTitle";
 import { apiCall, tryConnection } from "../helpers";
 
@@ -30,14 +30,9 @@ export default function Ult() {
       <>
         <ViewTitle title="Ult viewer" />
         <UltCard ult={ult} />
-        {ult.comments.length > 0 ? (
-          <>
-            <h4>Comments</h4>
-            <UltContainer ultsToShow={ult.comments} />
-          </>
-        ) : (
-          <h4>No comments for this ULT</h4>
-        )}
+        <h4>Comments ({ult.comments.length})</h4>
+        <UltCreateAsComment ultId={ult._id} />
+        <UltContainer ultsToShow={ult.comments} />
       </>
     )
   );
