@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./CardFooter.css";
 
 function CardFooter({ ultLikes, ultComments, datetime }) {
@@ -6,26 +6,36 @@ function CardFooter({ ultLikes, ultComments, datetime }) {
   const [liked, setLiked] = useState(false);
   const [comments, setComments] = useState(ultComments.length);
 
+  const likeButtonRef = useRef();
+  const likeButtonIconRef = useRef();
+
   useEffect(() => {
     setLikes(ultLikes);
     setComments(ultComments.length);
-  }, []);
+  }, [ultLikes, ultComments]);
 
   const handleClick = (e) => {
     // TODO: ADD ONE LIKE IN THE DATABASE FOR THE ULT
     setLiked(!liked);
     setLikes((current) => current + (liked ? -1 : 1));
-    liked
-      ? e.target.classList.remove("liked")
-      : e.target.classList.add("liked");
+
+    likeButtonRef.current.classList.toggle("liked");
+    likeButtonIconRef.current.classList.toggle("liked");
     e.stopPropagation();
   };
 
   return (
     <div className="card-footer">
       <span className="left">
-        <button className="like-button" onClick={handleClick}>
-          {likes} &#10084;
+        <button
+          className="like-button"
+          ref={likeButtonRef}
+          onClick={handleClick}
+        >
+          {likes}{" "}
+          <span className="material-icons" ref={likeButtonIconRef}>
+            favorite
+          </span>
         </button>
       </span>
       <span className="left">{comments} comments</span>

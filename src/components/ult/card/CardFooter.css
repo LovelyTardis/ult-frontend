@@ -9,11 +9,13 @@
 
 .left {
   margin-left: 5%;
+  font-size: inherit;
   padding: var(--padding-cf);
 }
 
 .right {
   margin: 0 5% 0 auto;
+  font-size: inherit;
   padding: var(--padding-cf);
 }
 
@@ -21,14 +23,22 @@
   transition: opacity 0.3s ease;
   opacity: 1;
   background-color: transparent;
+  display: flex;
+  font-size: inherit;
   border: transparent;
   cursor: pointer;
   padding: 0 20px;
+  font-size: normal;
 }
 
 .like-button:hover {
   transition: opacity 0.3s ease;
   opacity: var(--opacity-hover);
+}
+
+.like-button > .material-icons {
+  font-size: inherit;
+  margin: 0 5px;
 }
 
 .liked {
