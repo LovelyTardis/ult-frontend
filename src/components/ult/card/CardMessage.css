@@ -2,3 +2,8 @@
   margin: 30px;
   height: auto;
 }
+
+.card-message-sentence {
+  display: inline-block;
+  width: 100%;
+}
