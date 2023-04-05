@@ -4,7 +4,7 @@ import useAuth from "../../hooks/useAuth";
 import "./UltCreate.css";
 import { CardHeader } from "./card";
 
-export default function UltCreate({ refreshUlts = null }) {
+export default function UltCreate({ refreshUlts = null, ultId = null }) {
   const maxChars = 100;
   const { user } = useAuth();
   const [charCounter, setCharCounter] = useState(maxChars);
@@ -20,6 +20,7 @@ export default function UltCreate({ refreshUlts = null }) {
     try {
       const { error, code, data } = await apiCall("/ult/create", "POST", {
         message: textAreaValue,
+        ult: ultId,
       });
 
       if (error) {
