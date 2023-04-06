@@ -1,7 +1,7 @@
 import { useState } from "react";
 import UltCreate from "./UltCreate";
 
-function UltCreateAsComment({ ultId }) {
+function UltCreateAsComment({ ultId, refreshUlts = null }) {
   const [wantsToComment, setWantsToComment] = useState(false);
 
   const toggleUltCreate = () => {
@@ -13,7 +13,9 @@ function UltCreateAsComment({ ultId }) {
       <button className="material-icons" onClick={toggleUltCreate}>
         comment
       </button>
-      {wantsToComment ? <UltCreate ultId={ultId} /> : null}
+      {wantsToComment ? (
+        <UltCreate refreshUlts={refreshUlts} ultId={ultId} />
+      ) : null}
     </>
   );
 }
