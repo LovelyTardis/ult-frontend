@@ -6,8 +6,10 @@ import { apiCall, tryConnection } from "../../helpers";
 import { CardHeader, CardMessage, CardFooter } from "./card";
 import ErrorDisplay from "../errors/ErrorDisplay";
 import { useNavigate } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
 
 function UltCard({ ult }) {
+  const { user: loggedUser } = useAuth();
   const { message, _id, user, likes, comments, datetime } = ult;
   const initialValues = {
     profilePicture: "",
@@ -41,27 +43,29 @@ function UltCard({ ult }) {
     navigate(`/ult/${_id}`);
   };
 
-  return (
-    <>
-      {!error ? (
-        <div
-          className="ult-card"
-          tabIndex={0}
-          role="button"
-          onClick={handleClick}
-        >
-          <CardHeader user={userData} />
-          <CardMessage message={message} />
-          <CardFooter
-            ultLikes={likes}
-            ultComments={comments}
-            datetime={datetime}
-          />
-        </div>
-      ) : (
-        <ErrorDisplay message={data} code={code} />
-      )}
-    </>
+  const handleClickDots = (e) => {
+    // TODO: CREATE A DROPDOWN COMPONENT AND ACTIVATE IT
+    console.log("Dropdown:");
+    console.log("Ult user?", ult.user);
+    console.log("Logged user?", loggedUser.uid);
+    console.log("Same user?", ult.user === loggedUser.uid);
+
+    e.stopPropagation();
+  };
+
+  return !error ? (
+    <div className="ult-card" tabIndex={0} role="button" onClick={handleClick}>
+      <div className="ult-card-options">
+        <CardHeader user={userData} />
+        <button className="options-button" onClick={handleClickDots}>
+          <span className="material-icons">more_horiz</span>
+        </button>
+      </div>
+      <CardMessage message={message} />
+      <CardFooter ultLikes={likes} ultComments={comments} datetime={datetime} />
+    </div>
+  ) : (
+    <ErrorDisplay message={data} code={code} />
   );
 }
 
