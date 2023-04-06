@@ -1,7 +1,10 @@
 import { useEffect, useRef, useState } from "react";
 import AuthForm from "./AuthForm";
+import { apiCall } from "../../helpers";
+import useAuth from "../../hooks/useAuth";
 
 export function RegisterForm() {
+  const { register } = useAuth();
   const nameRef = useRef();
 
   const [name, setName] = useState("");
@@ -15,10 +18,26 @@ export function RegisterForm() {
     nameRef.current.focus();
   }, []);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log({ name, username, email, password, password2 });
-    // TODO: CREATE REGISTER THUNK
+
+    try {
+      const { data, error, code } = await apiCall("/user/register", "POST", {
+        email,
+        name,
+        username,
+        password,
+      });
+
+      if (error) {
+        setError(`Error ${code} - ${data}`);
+        return;
+      }
+
+      register(data.token);
+    } catch (err) {
+      setError("Error 500 - user not created");
+    }
   };
 
   const inputs = {
