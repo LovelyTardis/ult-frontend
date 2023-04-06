@@ -9,9 +9,7 @@ export default function SideBar() {
   const { isAuth, user } = useAuth();
 
   const initialValues = {
-    profilePicture: `${import.meta.env.VITE_API}${
-      import.meta.env.VITE_ANONYM_PATH
-    }`,
+    profilePicture: "/public/anonymous.png",
     username: "anonymous",
     name: "anonymous",
   };
