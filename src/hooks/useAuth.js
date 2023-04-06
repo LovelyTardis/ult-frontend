@@ -38,9 +38,14 @@ export default function useAuth() {
     dispatch(loginAction(data.data));
   };
 
+  const register = (token) => {
+    localStorage.setItem("user-token", token);
+    autoLogin();
+  };
+
   const logout = () => {
     dispatch(logoutAction());
   };
 
-  return { user, isAuth, fetching, login, autoLogin, logout };
+  return { user, isAuth, fetching, login, autoLogin, register, logout };
 }
