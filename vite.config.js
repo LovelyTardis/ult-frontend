@@ -6,7 +6,10 @@ import mkcert from "vite-plugin-mkcert";
 export default ({ mode }) => {
   process.env = Object.assign(process.env, loadEnv(mode, process.cwd(), ""));
   return defineConfig({
-    server: { port: process.env.VITE_PORT, https: true },
+    server: {
+      port: process.env.VITE_PORT,
+      // https: true
+    },
     plugins: [react(), mkcert()],
   });
 };
