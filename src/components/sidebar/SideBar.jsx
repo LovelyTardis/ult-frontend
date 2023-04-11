@@ -9,7 +9,7 @@ export default function SideBar() {
   const { isAuth, user } = useAuth();
 
   const initialValues = {
-    profilePicture: "/public/anonymous.png",
+    profilePicture: "/anonymous.png",
     username: "anonymous",
     name: "anonymous",
   };
