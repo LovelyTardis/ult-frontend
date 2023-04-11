@@ -30,16 +30,16 @@ export default function Layout() {
           <Routes>
             {/* PRIVATE ROUTES */}
             <Route element={<RequireAuth auth={isAuth} />}>
-              <Route path="/" element={<Home />} />
-              <Route path="/settings" element={<Settings />} />
-              <Route path="/logout" element={<Logout />} />
+              <Route exact path="/" element={<Home />} />
+              <Route exact path="/settings" element={<Settings />} />
+              <Route exact path="/logout" element={<Logout />} />
             </Route>
             {/* PUBLIC ROUTES */}
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/profile/:username" element={<Profile />} />
-            <Route path="/ult/:ultId" element={<Ult />} />
-            <Route path="*" element={<NotFound />} />
+            <Route exact path="/login" element={<Login />} />
+            <Route exact path="/register" element={<Register />} />
+            <Route exact path="/profile/:username" element={<Profile />} />
+            <Route exact path="/ult/:ultId" element={<Ult />} />
+            <Route exact path="*" element={<NotFound />} />
           </Routes>
         </section>
         <section id="sidebar">

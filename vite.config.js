@@ -10,6 +10,7 @@ export default ({ mode }) => {
       port: process.env.VITE_PORT,
       https: true,
     },
+    base: "/",
     plugins: [react(), mkcert()],
   });
 };
