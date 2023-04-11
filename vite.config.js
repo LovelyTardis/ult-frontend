@@ -8,7 +8,7 @@ export default ({ mode }) => {
   return defineConfig({
     server: {
       port: process.env.VITE_PORT,
-      // https: true
+      https: true,
     },
     plugins: [react(), mkcert()],
   });
