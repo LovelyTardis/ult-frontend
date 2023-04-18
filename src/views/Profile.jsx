@@ -6,6 +6,7 @@ import ViewTitle from "../components/ViewTitle";
 
 import { tryConnection, apiCall } from "../helpers";
 import useAuth from "../hooks/useAuth";
+import NotFound from "./404";
 
 export default function Profile() {
   const { isAuth, user } = useAuth();
@@ -63,18 +64,24 @@ export default function Profile() {
   return (
     <div>
       <ViewTitle title="User profile" />
-      <ProfileHeader
-        dataHeader={dataHeader}
-        isLoggedProfile={isLoggedProfile}
-      />
-      <h3>Latest ULTS from {username}</h3>
-      {ults.length === 0 ? (
-        <h5>This user has no ULTS</h5>
+      {userProfile.username ? (
+        <>
+          <ProfileHeader
+            dataHeader={dataHeader}
+            isLoggedProfile={isLoggedProfile}
+          />
+          <h3>Latest ULTS from {username}</h3>
+          {ults.length === 0 ? (
+            <h5>This user has no ULTS</h5>
+          ) : (
+            <UltContainer ultsToShow={ults} />
+          )}
+          {/* TODO: map for the ults and likedUlts */}
+          {/* <UltContainer ultsToShow={likedUlts} /> */}
+        </>
       ) : (
-        <UltContainer ultsToShow={ults} />
+        <NotFound />
       )}
-      {/* TODO: map for the ults and likedUlts */}
-      {/* <UltContainer ultsToShow={likedUlts} /> */}
     </div>
   );
 }
