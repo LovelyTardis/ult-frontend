@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import "./CardFooter.css";
 
-function CardFooter({ ultLikes, ultComments, datetime }) {
+function CardFooter({ ultLikes, ultComments, datetime, handleLike }) {
   const [likes, setLikes] = useState(ultLikes);
   const [liked, setLiked] = useState(false);
   const [comments, setComments] = useState(ultComments.length);
@@ -15,12 +15,14 @@ function CardFooter({ ultLikes, ultComments, datetime }) {
   }, [ultLikes, ultComments]);
 
   const handleClick = (e) => {
-    // TODO: ADD ONE LIKE IN THE DATABASE FOR THE ULT
-    setLiked(!liked);
     setLikes((current) => current + (liked ? -1 : 1));
 
     likeButtonRef.current.classList.toggle("liked");
     likeButtonIconRef.current.classList.toggle("liked");
+
+    handleLike(!liked);
+    setLiked(!liked);
+
     e.stopPropagation();
   };
 
