@@ -9,6 +9,7 @@ export const apiCall = async (
 
   switch (method) {
     case "POST":
+    case "PUT":
       call = await fetch(`${url}${path}`, {
         method,
         body: JSON.stringify(body),
