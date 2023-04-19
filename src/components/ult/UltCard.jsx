@@ -43,6 +43,14 @@ function UltCard({ ult }) {
     navigate(`/ult/${_id}`);
   };
 
+  const handleLike = async (like) => {
+    const liked = await apiCall(`/ult/like/${_id}`, "PUT", {
+      like,
+    });
+
+    console.log(liked);
+  };
+
   const handleClickDots = (e) => {
     // TODO: CREATE A DROPDOWN COMPONENT AND ACTIVATE IT
     console.log("Dropdown:");
@@ -62,7 +70,12 @@ function UltCard({ ult }) {
         </button>
       </div>
       <CardMessage message={message} />
-      <CardFooter ultLikes={likes} ultComments={comments} datetime={datetime} />
+      <CardFooter
+        ultLikes={likes}
+        ultComments={comments}
+        datetime={datetime}
+        handleLike={handleLike}
+      />
     </div>
   ) : (
     <ErrorDisplay message={data} code={code} />
