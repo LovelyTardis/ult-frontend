@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import ProfileHeader from "../components/profile/ProfileHeader";
+import { ProfileHeader, ProfileContainerPicker } from "../components/profile";
 import { UltContainer } from "../components/ult";
 import ViewTitle from "../components/ViewTitle";
 
@@ -24,6 +24,7 @@ export default function Profile() {
           ults: {},
         }
   );
+  const [activeLikedUlts, setActiveLikedUlts] = useState(false);
 
   let error, data, code;
 
@@ -56,10 +57,14 @@ export default function Profile() {
     return () => {
       controller.abort();
     };
-  }, [username, user]);
+  }, [username, user, activeLikedUlts]);
 
   let { biography, email, name, profilePicture, ults, likedUlts } = userProfile;
   const dataHeader = { biography, email, name, profilePicture, username };
+
+  useEffect(() => {
+    console.log("Changed activeLikedUlts:", activeLikedUlts);
+  }, [activeLikedUlts]);
 
   return (
     <div>
@@ -70,14 +75,14 @@ export default function Profile() {
             dataHeader={dataHeader}
             isLoggedProfile={isLoggedProfile}
           />
-          <h3>Latest ULTS from {username}</h3>
-          {ults.length === 0 ? (
-            <h5>This user has no ULTS</h5>
+          <ProfileContainerPicker setActiveLikedUlts={setActiveLikedUlts} />
+          {activeLikedUlts && likedUlts.length === 0 ? (
+            <h5>This user has no liked ULTS</h5>
           ) : (
-            <UltContainer ultsToShow={ults} />
+            !activeLikedUlts &&
+            ults.length === 0 && <h5>This user has no ULTS</h5>
           )}
-          {/* TODO: map for the ults and likedUlts */}
-          {/* <UltContainer ultsToShow={likedUlts} /> */}
+          <UltContainer ultsToShow={activeLikedUlts ? likedUlts : ults} />
         </>
       ) : (
         <NotFound />
